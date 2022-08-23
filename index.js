@@ -2,8 +2,13 @@ const express = require('express');
 const app = express();
 const defaultPort = 3000;
 
-const crypto = require('crypto');
+const signInURL = '/sign-in';
+const callbackURL = '/callback';
+const generateStateURL = '/generate-state';
+const generateVerifierURL = '/generate-verifier';
+
 const axios = require('axios');
+const crypto = require('crypto');
 
 var sha256 = require("crypto-js/sha256");
 var Base64 = require("crypto-js/enc-base64");
@@ -22,12 +27,12 @@ app.get('/', function(req, res){
    res.send("Hello world!");
 });
 
-app.get('/generate-state', function(req, res){
+app.get(generateStateURL, function(req, res){
    let state = generateRandomString(16);
    res.send(state);
 });
 
-app.get('/generate-verifier', function(req, res){
+app.get(generateVerifierURL, function(req, res){
    	const code_verifier  = generateRandomString(128);
 	const hash = crypto.createHash('sha256');
 	const hashed = hash.update(code_verifier)
@@ -37,7 +42,7 @@ app.get('/generate-verifier', function(req, res){
 	res.send(`verifier = ${code_verifier}<br>hashed = ${hashed}<br>challenge = ${code_challenge}`);
 });
 
-app.get('/sign-in/', function(req, res){
+app.get(signInURL, function(req, res){
 	const response_type = "code";
 	const client_id = 'zPpFotGfnV85ZQbEs9qLMTfQ';
 	const state = 'DAV0RlF68zZr7F77';
@@ -48,7 +53,7 @@ app.get('/sign-in/', function(req, res){
 	res.redirect(`https://jennysbakery.memberful.com/oauth/?response_type=${response_type}&client_id=${client_id}&state=${state}&code_challenge=${code_challenge}&code_challenge_method=${code_challenge_method}`);
 });
  
-app.get('/callback/', function(req, res){
+app.get(callbackURL, function(req, res){
 	const code = req.query.code;
 	const client_id = 'zPpFotGfnV85ZQbEs9qLMTfQ';
 	const returnedState = req.query.state;
