@@ -7,6 +7,9 @@ const callbackURL = '/callback';
 const generateStateURL = '/generate-state';
 const generateVerifierURL = '/generate-verifier';
 
+const client_id = 'zPpFotGfnV85ZQbEs9qLMTfQ';
+const state = 'DAV0RlF68zZr7F77';
+
 const axios = require('axios');
 const crypto = require('crypto');
 
@@ -44,8 +47,6 @@ app.get(generateVerifierURL, function(req, res){
 
 app.get(signInURL, function(req, res){
 	const response_type = "code";
-	const client_id = 'zPpFotGfnV85ZQbEs9qLMTfQ';
-	const state = 'DAV0RlF68zZr7F77';
 	const code_challenge = 'brUd6mk8iE7La-bLZSMSAzef1DQRIT3ox9URzsUJmHA';
 	const code_challenge_method = 'S256';
 
@@ -55,10 +56,8 @@ app.get(signInURL, function(req, res){
  
 app.get(callbackURL, function(req, res){
 	const code = req.query.code;
-	const client_id = 'zPpFotGfnV85ZQbEs9qLMTfQ';
 	const returnedState = req.query.state;
    	let code_verifier = 'P0aW8nFfarEhdn9gYJWnpSU8OHEFkLNPH-0kdMyYNco9KcNOkDDdp5RyrR0ruGzNoCQAekfJo1Zcwts871-HAAAG60NH9dJr4Da2mXRbX1EPIYbrbPRC1WOup4nmxmuS';
-   	let state = 'DAV0RlF68zZr7F77';
 
 	if(state === returnedState){
 		//access token request
