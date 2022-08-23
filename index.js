@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+const defaultPort = 3000;
+
 const crypto = require('crypto');
 const axios = require('axios');
+
 var sha256 = require("crypto-js/sha256");
 var Base64 = require("crypto-js/enc-base64");
 const base64url = require('base64url');
@@ -73,7 +76,7 @@ app.get('/callback/', function(req, res){
 	}
 });
 
-const PORT = process.env.PORT || 6565;
+const PORT = process.env.PORT || defaultPort;
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
