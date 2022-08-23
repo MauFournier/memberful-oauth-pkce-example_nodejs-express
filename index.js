@@ -1,9 +1,8 @@
 const express = require('express');
 const axios = require('axios');
 const crypto = require('crypto');
-
-var sha256 = require("crypto-js/sha256");
-var Base64 = require("crypto-js/enc-base64");
+const sha256 = require("crypto-js/sha256");
+const Base64 = require("crypto-js/enc-base64");
 const base64url = require('base64url');
 
 const app = express();
