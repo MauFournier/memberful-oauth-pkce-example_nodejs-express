@@ -1,21 +1,21 @@
 const express = require('express');
-const app = express();
-const defaultPort = 3000;
-
-const signInURL = '/sign-in';
-const callbackURL = '/callback';
-const generateStateURL = '/generate-state';
-const generateVerifierURL = '/generate-verifier';
-
-const client_id = 'zPpFotGfnV85ZQbEs9qLMTfQ';
-const state = 'DAV0RlF68zZr7F77';
-
 const axios = require('axios');
 const crypto = require('crypto');
 
 var sha256 = require("crypto-js/sha256");
 var Base64 = require("crypto-js/enc-base64");
 const base64url = require('base64url');
+
+const app = express();
+
+const defaultPort = 3000;
+const signInURL = '/sign-in';
+const callbackURL = '/callback';
+const generateStateURL = '/generate-state';
+const generateVerifierURL = '/generate-verifier';
+
+const client_id = 'R9Hnp1wHuD9cg4NJcE1sgPuq'; //Your custom app's client ID, found in the Memberful dashboard.
+const state = 'DAV0RlF68zZr7F77';
 
 const generateRandomString = (length) => {
 	let text = "";
@@ -60,7 +60,7 @@ app.get(callbackURL, function(req, res){
    	const code_verifier = 'P0aW8nFfarEhdn9gYJWnpSU8OHEFkLNPH-0kdMyYNco9KcNOkDDdp5RyrR0ruGzNoCQAekfJo1Zcwts871-HAAAG60NH9dJr4Da2mXRbX1EPIYbrbPRC1WOup4nmxmuS';
 
 	if(state === returnedState){
-		//access token request
+		//Access token request
 		axios.post(`https://jennysbakery.memberful.com/oauth/token`, {
 			grant_type: "authorization_code",
 			code: code,
