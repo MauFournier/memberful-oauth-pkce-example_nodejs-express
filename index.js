@@ -10,11 +10,9 @@ const app = express();
 const defaultPort = 3000;
 const signInURL = '/sign-in';
 const callbackURL = '/callback';
-const generateStateURL = '/generate-state';
 const generateVerifierURL = '/generate-verifier';
 
 const client_id = 'R9Hnp1wHuD9cg4NJcE1sgPuq'; //Your custom app's client ID, found in the Memberful dashboard.
-const state = 'DAV0RlF68zZr7F77';
 
 const generateRandomString = (length) => {
 	let text = "";
@@ -25,13 +23,10 @@ const generateRandomString = (length) => {
 	return text;
 };
 
+const state = generateRandomString(16);
+
 app.get('/', function(req, res){
    res.send("Hello world!");
-});
-
-app.get(generateStateURL, function(req, res){
-   const state = generateRandomString(16);
-   res.send(state);
 });
 
 app.get(generateVerifierURL, function(req, res){
