@@ -19,7 +19,7 @@ const base64url = require('base64url');
 
 const generateRandomString = (length) => {
 	let text = "";
-	let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	for (let i = 0; i < length; i++) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 	}
@@ -31,7 +31,7 @@ app.get('/', function(req, res){
 });
 
 app.get(generateStateURL, function(req, res){
-   let state = generateRandomString(16);
+   const state = generateRandomString(16);
    res.send(state);
 });
 
@@ -57,7 +57,7 @@ app.get(signInURL, function(req, res){
 app.get(callbackURL, function(req, res){
 	const code = req.query.code;
 	const returnedState = req.query.state;
-   	let code_verifier = 'P0aW8nFfarEhdn9gYJWnpSU8OHEFkLNPH-0kdMyYNco9KcNOkDDdp5RyrR0ruGzNoCQAekfJo1Zcwts871-HAAAG60NH9dJr4Da2mXRbX1EPIYbrbPRC1WOup4nmxmuS';
+   	const code_verifier = 'P0aW8nFfarEhdn9gYJWnpSU8OHEFkLNPH-0kdMyYNco9KcNOkDDdp5RyrR0ruGzNoCQAekfJo1Zcwts871-HAAAG60NH9dJr4Da2mXRbX1EPIYbrbPRC1WOup4nmxmuS';
 
 	if(state === returnedState){
 		//access token request
