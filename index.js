@@ -8,7 +8,7 @@ const app = express();
 const defaultPort = 3000;
 const signInURL = '/sign-in';
 const callbackURL = '/callback';
-const client_id = 'AAc3JjLDMJC4TEA7AZvpTCBX'; //Your custom app's "OAuth Identifier", found in the Memberful dashboard.
+const client_id = 'INSERT_YOUR_OAUTH_IDENTIFIER_HERE'; //Your custom app's "OAuth Identifier", found in the Memberful dashboard.
 
 const generateRandomString = (length) => {
 	let text = "";
