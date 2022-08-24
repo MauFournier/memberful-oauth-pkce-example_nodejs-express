@@ -26,11 +26,11 @@ const generateVerifierAndChallenge = () => {
 	const digested = hashed.digest();
 	const code_challenge = base64url(digested);
 
-	return {verifier: code_verifier, challenge: code_challenge};
+	return {code_verifier, code_challenge};
 };
 
 const state = generateRandomString(16);
-const {verifier: code_verifier, challenge : code_challenge} = generateVerifierAndChallenge();
+const {code_verifier, code_challenge} = generateVerifierAndChallenge();
 
 app.get('/', function(req, res){
    res.send("Hello world!");
@@ -45,8 +45,7 @@ app.get(signInURL, function(req, res){
 });
  
 app.get(callbackURL, function(req, res){
-	const code = req.query.code;
-	const returnedState = req.query.state;
+	const {code, state: returnedState} = req.query;
 
 	if(state === returnedState){
 		//Access token request
