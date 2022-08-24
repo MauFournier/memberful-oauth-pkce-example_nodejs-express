@@ -1,4 +1,4 @@
-A simple example of Memberful's OAuth flow written in NodeJS and Express
+A simple example of Memberful's PKCE OAuth flow written in NodeJS and Express
 
 ## Installation
 
