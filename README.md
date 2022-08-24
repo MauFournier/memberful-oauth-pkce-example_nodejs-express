@@ -27,11 +27,11 @@ http://localhost:3000/
 
 Now that we know the server is running properly, let's create a Custom Application in Memberful.
 
-Go to Settings → Custom applications and create a new application.
+Go to Settings → Custom applications and create a new application. Check the "include OAuth tokens with this application" checkbox.
 
-This example is showing the PKCE flow, so pick either "Single-Page Application" or "Mobile Application" as the application type.
+This example is showing the PKCE flow, so pick either "Single Page Application" or "Mobile Application" as the application type.
 
-For your callback URL, enter the following:
+For your OAuth Redirect URL, enter the following:
 
 ```bash
 http://localhost:3000/callback
