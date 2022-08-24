@@ -38,14 +38,14 @@ http://localhost:3000/callback
 ```
 (if you're not running this locally, replace localhost:3000 with your server's public URL)
 
-Copy your custom app's "OAuth Identifier" and paste it into index.js as the value of the client_id variable (you'll see a comment about this in the code).
+Copy your custom app's "OAuth Identifier" and paste it into index.js as the value of the **client_id** variable (you'll see a comment about this in the code).
 
 Now we're ready to begin the OAuth flow by opening the following URL.
 
 ```bash
 http://localhost:3000/sign-in
 ```
-You can change the path for this route and for the callback near the top of the index.js file.
+You can change the path for this route and for the callback near the top of the index.js file. (If you change the callback path, you'll need to create a new Custom Application in Memberful and replace the OAuth Identifier with the new one.)
 
 If everything works, you'll be asked to sign in (you'll need a member account to sign into), and then you'll end up at the /callback route with the access token being displayed. It'll look something like this:
 
