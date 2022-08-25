@@ -8,7 +8,7 @@ const app = express();
 const defaultPort = 3000;
 const signInURL = '/sign-in';
 const callbackURL = '/callback';
-const memberfulSubdomain = 'INSERT_YOUR_MEMBERFUL_SUBDOMAIN_HERE'; //Your Memberful account subdomain (e.g. https://example.memberful.com).
+const memberfulURL = 'INSERT_YOUR_MEMBERFUL_URL_HERE'; //Your Memberful account subdomain (e.g. https://example.memberful.com).
 const client_id = 'INSERT_YOUR_OAUTH_IDENTIFIER_HERE'; //Your custom app's "OAuth Identifier", found in the Memberful dashboard.
 
 const generateRandomString = (length) => {
@@ -44,7 +44,7 @@ app.get(signInURL, function (req, res) {
 
   //Auth code request
   res.redirect(
-    `${memberfulSubdomain}/oauth/?response_type=${response_type}&client_id=${client_id}&state=${state}&code_challenge=${code_challenge}&code_challenge_method=${code_challenge_method}`
+    `${memberfulURL}/oauth/?response_type=${response_type}&client_id=${client_id}&state=${state}&code_challenge=${code_challenge}&code_challenge_method=${code_challenge_method}`
   );
 });
 
@@ -54,7 +54,7 @@ app.get(callbackURL, function (req, res) {
   if (state === returnedState) {
     //Access token request
     axios
-      .post(`${memberfulSubdomain}/oauth/token`, {
+      .post(`${memberfulURL}/oauth/token`, {
         grant_type: 'authorization_code',
         code: code,
         client_id: client_id,
