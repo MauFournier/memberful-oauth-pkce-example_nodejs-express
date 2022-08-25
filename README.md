@@ -13,7 +13,7 @@ npm install
 To test locally, run the following command to start the server:
 
 ```bash
-node index.js
+npm start
 ```
 
 You can also upload this to a publicly accessible server and run it there.
