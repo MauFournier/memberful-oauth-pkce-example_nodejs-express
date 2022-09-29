@@ -37,7 +37,7 @@ const clientId = 'INSERT_YOUR_OAUTH_IDENTIFIER_HERE';
 //*** Functions for generating the codes we'll need
 //****************************************************************
 
-const generateRandomString = (length: number) => {
+export const generateRandomString = (length: number) => {
   let text = '';
   const possible =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -250,6 +250,8 @@ app.get(callbackURL, async (req, res) => {
           client_id: clientId,
         }
       );
+
+      console.log(refreshTokenResponse.data);
 
       // We now have a new access token!
       // Example response:
