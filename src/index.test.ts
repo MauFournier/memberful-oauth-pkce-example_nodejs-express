@@ -1,17 +1,25 @@
 import {
   generateCodeVerifier,
+  generateCodeChallengeFromVerifier,
   generateCodeVerifierAndChallenge,
 } from './index';
 
 describe('Generating code verifier and challenge', () => {
-  it('Generates a valid code verifier', () => {
-    const { codeVerifier: code_verifier } = generateCodeVerifierAndChallenge();
+  it('should generate a valid code verifier', () => {
+    const codeVerifier = generateCodeVerifier();
 
-    expect(code_verifier).toHaveLength(128);
-    expect(code_verifier).toMatch(/^[a-zA-Z0-9]+$/);
+    //Code verifier should have a length between 43 and 128 characters
+    expect(codeVerifier.length).toBeGreaterThanOrEqual(43);
+    expect(codeVerifier.length).toBeLessThanOrEqual(128);
+
+    //Code verifier should be made up of alphanumeric characters
+    expect(codeVerifier).toMatch(/^[a-zA-Z0-9]+$/);
   });
 
-  it('Generates a valid code challenge that matches the code verifier', () => {
-    const { code_verifier, code_challenge } = generateCodeVerifier();
+  it('should generate a valid code challenge from on a code verifier', () => {
+    const codeVerifier = generateCodeVerifier(); // TODO add real verifier
+    const codeChallenge = generateCodeChallengeFromVerifier(codeVerifier);
+
+    expect(codeChallenge).toStrictEqual('1');
   });
 });
