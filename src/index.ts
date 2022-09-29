@@ -1,7 +1,9 @@
-const express = require('express');
-const axios = require('axios');
-const crypto = require('crypto');
-const base64url = require('base64url');
+import express from 'express';
+import axios from 'axios';
+import crypto from 'crypto';
+import base64url from 'base64url';
+
+import generateRandomString from './generateRandomString';
 
 const app = express();
 
@@ -11,28 +13,29 @@ const callbackURL = '/callback';
 const memberfulURL = 'INSERT_YOUR_MEMBERFUL_URL_HERE'; //Your Memberful account subdomain (e.g. https://example.memberful.com).
 const client_id = 'INSERT_YOUR_OAUTH_IDENTIFIER_HERE'; //Your custom app's "OAuth Identifier", found in the Memberful dashboard.
 
-const generateRandomString = (length) => {
-  let text = '';
-  const possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (let i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
+export const generateCodeVerifier = () => {
+  const codeVerifier = generateRandomString(128);
+  return codeVerifier;
 };
 
-const generateVerifierAndChallenge = () => {
-  const code_verifier = generateRandomString(128);
+export const generateCodeChallengeForVerifier = (codeVerifier: string) => {
   const hash = crypto.createHash('sha256');
-  const hashed = hash.update(code_verifier);
+  const hashed = hash.update(codeVerifier);
   const digested = hashed.digest();
-  const code_challenge = base64url(digested);
+  const codeChallenge = base64url(digested);
 
-  return { code_verifier, code_challenge };
+  return codeChallenge;
+};
+
+export const generateCodeVerifierAndChallenge = () => {
+  const codeVerifier = generateCodeVerifier();
+  const codeChallenge = generateCodeChallengeForVerifier(codeVerifier);
+
+  return { codeVerifier, codeChallenge };
 };
 
 const state = generateRandomString(16);
-const { code_verifier, code_challenge } = generateVerifierAndChallenge();
+const { codeVerifier, codeChallenge } = generateCodeVerifierAndChallenge();
 
 app.get('/', function (req, res) {
   res.send('Hello world!');
@@ -44,7 +47,7 @@ app.get(signInURL, function (req, res) {
 
   //Auth code request
   res.redirect(
-    `${memberfulURL}/oauth/?response_type=${response_type}&client_id=${client_id}&state=${state}&code_challenge=${code_challenge}&code_challenge_method=${code_challenge_method}`
+    `${memberfulURL}/oauth/?response_type=${response_type}&client_id=${client_id}&state=${state}&code_challenge=${codeChallenge}&code_challenge_method=${code_challenge_method}`
   );
 });
 
@@ -58,7 +61,7 @@ app.get(callbackURL, function (req, res) {
         grant_type: 'authorization_code',
         code: code,
         client_id: client_id,
-        code_verifier: code_verifier,
+        code_verifier: codeVerifier,
       })
       .then(function (response) {
         console.log(response.data);
@@ -66,7 +69,7 @@ app.get(callbackURL, function (req, res) {
       })
       .catch(function (error) {
         console.log(error);
-        res.send(response.data);
+        res.send(error.data);
       });
   } else {
     res.send("State doesn't match");
