@@ -1,7 +1,6 @@
 import {
   generateCodeVerifier,
   generateCodeChallengeFromVerifier,
-  generateCodeVerifierAndChallenge,
 } from './index';
 
 describe('Generating code verifier and challenge', () => {
@@ -11,15 +10,15 @@ describe('Generating code verifier and challenge', () => {
     //Code verifier should have a length between 43 and 128 characters
     expect(codeVerifier.length).toBeGreaterThanOrEqual(43);
     expect(codeVerifier.length).toBeLessThanOrEqual(128);
-
-    //Code verifier should be made up of alphanumeric characters
-    expect(codeVerifier).toMatch(/^[a-zA-Z0-9]+$/);
   });
 
   it('should generate a valid code challenge from on a code verifier', () => {
-    const codeVerifier = generateCodeVerifier(); // TODO add real verifier
+    const codeVerifier =
+      'gJ5HQVMPHuHYqPyYsJciAHll4ZZ4XqOgWKpi6I9mDZ8v9n9q1RdsPiagLdoOFnJcZLDAXBgdV7LICtgotQibiMGkgz5kc2Hud5A5fcxRUtffycBFDY7Q7ecA1zwtLWUT';
     const codeChallenge = generateCodeChallengeFromVerifier(codeVerifier);
 
-    expect(codeChallenge).toStrictEqual('1');
+    expect(codeChallenge).toStrictEqual(
+      'XUpkYBbuU55zpezRyX8LPziycl0eSGljWDuSYNZW7uU'
+    );
   });
 });
