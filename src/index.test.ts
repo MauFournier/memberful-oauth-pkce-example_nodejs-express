@@ -3,11 +3,19 @@ import {
   generateCodeChallengeFromVerifier,
 } from './index';
 
+//Mock the express module so it won't be called during tests
+jest.mock('express', () =>
+  jest.fn(() => ({
+    get: jest.fn(),
+    listen: jest.fn(),
+  }))
+);
+
 describe('Generating code verifier and challenge', () => {
   it('should generate a valid code verifier', () => {
     const codeVerifier = generateCodeVerifier();
 
-    //Code verifier should have a length between 43 and 128 characters
+    //Code verifier should have a length between 43 and 128 characters/r/KN1n204Qi0
     expect(typeof codeVerifier).toBe('string');
 
     //Code verifier should have a length between 43 and 128 characters
