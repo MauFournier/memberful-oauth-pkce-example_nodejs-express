@@ -9,7 +9,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Proprietary",
   "dependencies": {
     "axios": "^0.24.0",
     "base64url": "^3.0.1",
