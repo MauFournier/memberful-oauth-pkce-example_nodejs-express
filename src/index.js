@@ -41,7 +41,7 @@ const clientId = 'INSERT_YOUR_OAUTH_IDENTIFIER_HERE';
 //*** Functions for generating the codes we'll need
 //****************************************************************
 
-export const generateRandomString = (length: number) => {
+export const generateRandomString = (length) => {
   let text = '';
   const possible =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -58,7 +58,7 @@ export const generateCodeVerifier = () => {
 };
 
 // Code challenge should be a base64url-encoded SHA256 hash of the code verifier
-export const generateCodeChallengeFromVerifier = (codeVerifier: string) => {
+export const generateCodeChallengeFromVerifier = (codeVerifier) => {
   // Create a sha256 hash object
   const hash = crypto.createHash('sha256');
   // Pass the data to be hashed (our code verifier) to the hash object
@@ -84,13 +84,12 @@ export const generateCodeVerifierAndChallenge = () => {
 };
 
 //****************************************************************
-//*** Let's use those functions to generate the codes we need
+//*** Declare necessary variables
 //****************************************************************
 
-// OK, let's generate our code verifier and code challenge
-let { codeVerifier, codeChallenge } = generateCodeVerifierAndChallenge();
-// Now let's generate our state, which is just a random string
-let state = generateRandomString(16);
+//We'll be generating our state string later on, but we'll need to keep
+//track of it throughout the flow, so we'll declare it here
+let state = '';
 
 //****************************************************************
 //*** Express app
@@ -268,6 +267,18 @@ app.get(callbackURL, async (req, res) => {
 
       // That's it! For more information on this process, check out our docs:
       // https://memberful.com/help/custom-development-and-api/sign-in-for-apps-via-oauth/
+
+      // Let's output the result, just for our own reference
+      res.send(`
+      <html><head></head><body>
+        <h2>Results from our access token request:</h2>
+        <pre>${JSON.stringify(accessTokenResponse.data, null, 2)}</pre>
+        <h2>Results from our member data request:</h2>
+        <pre>${JSON.stringify(memberDataResponse.data, null, 2)}</pre>
+        <h2>Results from our refresh token request:</h2>
+        <pre>${JSON.stringify(refreshTokenResponse.data, null, 2)}</pre>
+      </body></html>
+      `);
     } catch (error) {
       console.log(error);
       res.send(error.data);

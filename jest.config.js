@@ -1,5 +1,8 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
-  preset: 'ts-jest',
+const config = {
   testEnvironment: 'node',
+  transform: {
+    '\\.[jt]sx?$': 'babel-jest',
+  },
 };
+
+export default config;
