@@ -1,8 +1,12 @@
 /****************************************************************
- ** Memberful OAuth2 API Example - Node.js + Express
+ ** Memberful OAuth2 PKCE API Example - Node.js + Express
  **
- ** This example shows how to use the Memberful OAuth2 flow to
+ ** This example shows how to use the Memberful OAuth2 PKCE flow to
  ** authenticate a user and retrieve their profile information.
+ **
+ ** This is the flow you would use for a client-side application
+ ** (like an Electron app, for example). If you're building a server-side
+ ** application (SSA), you should look at our server-side example instead.
  **
  ** For more information, check out our documentation:
  ** https://memberful.com/help/custom-development-and-api/sign-in-for-apps-via-oauth/
