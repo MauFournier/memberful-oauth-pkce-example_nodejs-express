@@ -101,7 +101,7 @@ const app = express();
 app.get('/', (req, res) => {
   res.send(`
   <html><head></head><body>
-    <h1>Memberful OAuth Example - NodeJS + Express (No auth library)</h1>
+    <h1>Memberful OAuth PKCE Example - NodeJS + Express (No auth library)</h1>
     <p><a href="${beginOAuthFlowURL}">Begin OAuth Flow</a></p>
   </body></html>
   `);
