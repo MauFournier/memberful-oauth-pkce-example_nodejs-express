@@ -87,9 +87,11 @@ export const generateCodeVerifierAndChallenge = () => {
 //*** Declare necessary variables
 //****************************************************************
 
-//We'll be generating our state string later on, but we'll need to keep
+//We'll be generating our code strings later on, but we'll need to keep
 //track of it throughout the flow, so we'll declare it here
 let state = '';
+let codeVerifier = '';
+let codeChallenge = '';
 
 //****************************************************************
 //*** Express app
