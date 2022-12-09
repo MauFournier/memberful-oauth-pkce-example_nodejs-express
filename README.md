@@ -66,8 +66,8 @@ Results from our member data request:
   "data": {
     "currentMember": {
       "id": "2406643",
-      "email": "zamentik@gmail.com",
-      "fullName": "Zam",
+      "email": "maren.member@gmail.com",
+      "fullName": "Maren",
       "subscriptions": [
         {
           "active": false,
