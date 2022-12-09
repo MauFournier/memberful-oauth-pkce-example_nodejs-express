@@ -30,7 +30,7 @@ Now that we know the server is running properly, let's create a Custom Applicati
 
 Go to Settings → Custom applications and create a new application. Check the "include OAuth tokens with this application" checkbox.
 
-This example is showing the PKCE flow, so pick either "Single Page Application" or "Mobile Application" as the application type.
+This example is showing the PKCE flow, so pick "Mobile Application" as the application type.
 
 For your OAuth Redirect URL, enter the following:
 
