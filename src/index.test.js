@@ -15,14 +15,14 @@ describe('Generating code verifier and challenge', () => {
   it('should generate a valid code verifier', () => {
     const codeVerifier = generateCodeVerifier();
 
-    //Code verifier should have a length between 43 and 128 characters/r/KN1n204Qi0
+    //Code verifier should be a string
     expect(typeof codeVerifier).toBe('string');
 
     //Code verifier should have a length between 43 and 128 characters
     expect(codeVerifier.length).toBeGreaterThanOrEqual(43);
     expect(codeVerifier.length).toBeLessThanOrEqual(128);
 
-    // We've confirmed that code verifiers with any of these characters will work
+    // Code verifiers with any of these characters should work
     // ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_=,.[]{}()|/!?<>@#$%^&*+~
     expect(codeVerifier).toMatch(
       new RegExp('^[A-Za-z0-9-_=,.\\[\\]{}()|/!?<>@#$%^&*+~]+$')

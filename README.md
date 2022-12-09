@@ -109,7 +109,7 @@ Results from our refresh token request:
 
 Visit [this article](https://memberful.com/help/custom-development-and-api/sign-in-for-apps-via-oauth/#requesting-member-data) to learn more about fetching the member's data from Memberful's API with your access token.
 
-If you decide to implement your own code-generating functions for the code verifier and code challenge, we've included an automated test you can use to verify that they're producing the expected results.
+If you decide to implement your own code verifier/callenge generation, (perhaps using a different library or programming language), we've included an automated test you can use to ensure that your code is generating valid code verifiers and challenges.
 
 To run the tests, first update the imports inside src/index.test.js to import your own functions, and then run the following command:
 

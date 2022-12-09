@@ -88,9 +88,10 @@ export const generateCodeVerifierAndChallenge = () => {
   return { codeVerifier, codeChallenge };
 };
 
-// If you implement your own code-generating functions, update the
-// imports within index.test.js and run 'npm test' to make sure
-// your functions are producing the expected results.
+// If you decide to implement your own code verifier/callenge generation,
+// (perhaps using a different library or programming language), you should
+// update the imports within index.test.js and run 'npm test' to ensure that
+// your code is generating valid code verifiers and challenges.
 
 //****************************************************************
 //*** Declare necessary variables
