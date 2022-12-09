@@ -10,7 +10,7 @@ npm install
 
 ## Usage
 
-To test locally, run the following command to start the server:
+To run locally, run the following command to start the server:
 
 ```bash
 npm start
@@ -50,10 +50,69 @@ http://localhost:3000/begin-oauth-flow
 
 You can change the path for this route and for the callback near the top of the src/index.js file. (If you change the callback path, you'll need to create a new Custom Application in Memberful and replace the OAuth Identifier with the new one.)
 
-If everything works, you'll be asked to sign in (you'll need a member account to sign into), and then you'll end up at the /callback route with the access token and refresh token being displayed. It'll look something like this:
+If everything works, you'll be asked to sign in (you'll need a member account to sign into), and then you'll end up at the /callback route displaying the results of our requests (access token, refresh token, fetched member data, and refreshed access token). It'll look something like this:
 
 ```javascript
-{"access_token":"DgavbYyWVK4QXckSSvWvfSpX","expires_in":899,"refresh_token":"FYRQ5BQx9qJC2tyibfPdbzgH","token_type":"bearer"}
+Results from our access token request:
+{
+  "access_token": "F2Ns8Sbg4z6ZejTadwtr2ash",
+  "expires_in": 899,
+  "refresh_token": "wSu5hEqH9d8KHXsPHSrN6DdV",
+  "token_type": "bearer"
+}
+
+Results from our member data request:
+{
+  "data": {
+    "currentMember": {
+      "id": "2406643",
+      "email": "zamentik@gmail.com",
+      "fullName": "Zam",
+      "subscriptions": [
+        {
+          "active": false,
+          "expiresAt": 1667066915,
+          "plan": {
+            "id": "78645",
+            "name": "Premium Monthly"
+          }
+        },
+        {
+          "active": true,
+          "expiresAt": null,
+          "plan": {
+            "id": "65673",
+            "name": "One time success"
+          }
+        },
+        {
+          "active": false,
+          "expiresAt": 1655999542,
+          "plan": {
+            "id": "62764",
+            "name": "Premium"
+          }
+        }
+      ]
+    }
+  }
+}
+
+Results from our refresh token request:
+{
+  "access_token": "Ei7yKo1dwJiiunABzroNEXzw",
+  "expires_in": 899,
+  "refresh_token": "wSu5hEqH9d8KHXsPHSrN6DdV",
+  "token_type": "bearer"
+}
 ```
 
-Visit [this article](https://memberful.com/help/custom-development-and-api/sign-in-for-apps-via-oauth/#requesting-member-data) to learn about how you can use this access token to fetch the member's data from Memberful's API.
+Visit [this article](https://memberful.com/help/custom-development-and-api/sign-in-for-apps-via-oauth/#requesting-member-data) to learn more about fetching the member's data from Memberful's API with your access token.
+
+If you decide to implement your own code-generating functions for the code verifier and code challenge, we've included an automated test you can use to verify that they're producing the expected results.
+
+To run the tests, first update the imports inside src/index.test.js to import your own functions, and then run the following command:
+
+```bash
+npm test
+```
