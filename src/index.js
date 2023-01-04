@@ -4,8 +4,8 @@
  ** This example shows how to use the Memberful OAuth2 PKCE flow to
  ** authenticate a user and retrieve their profile information.
  **
- ** This is the flow you would use for a client-side application
- ** (like an Electron app or an app for phones). If you're building a server-side
+ ** This is the flow you would use for a client-side single-page
+ ** application or a mobile app. If you're building a server-side
  ** application (SSA), you should look at our server-side example instead.
  **
  ** For more information, check out our documentation:
