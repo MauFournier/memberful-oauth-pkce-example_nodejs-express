@@ -1,4 +1,9 @@
-A simple example of Memberful's PKCE OAuth flow written in NodeJS and Express
+A simple example of Memberful's PKCE OAuth flow written in NodeJS and Express.
+
+Note: If you're building a Server-Side Application, you should follow the Server-Side Example instead.
+
+For more information, check out our documentation:
+https://memberful.com/help/custom-development-and-api/sign-in-for-apps-via-oauth/
 
 ## Installation
 
@@ -30,7 +35,7 @@ Now that we know the server is running properly, let's create a Custom Applicati
 
 Go to Settings → Custom applications and create a new application. Check the "include OAuth tokens with this application" checkbox.
 
-This example is showing the PKCE flow, so pick "Mobile Application" as the application type.
+This example is showing the PKCE flow, so pick "Mobile Application" as the application type if you're building a mobile app, or "Single Page Application" if it's a client-side app on some other environment.
 
 For your OAuth Redirect URL, enter the following:
 
