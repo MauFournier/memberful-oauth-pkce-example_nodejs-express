@@ -36,8 +36,8 @@ const memberfulURL = 'INSERT_YOUR_MEMBERFUL_URL_HERE';
 
 // Your custom app's "OAuth Identifier", found in the Memberful dashboard.
 // >>> Note: You should store this in an environment variable to avoid
-// committing it to your repository. For this example, we're just storing
-// it in a global variable for simplicity.
+// committing it to your repository or exposing it in your client-side code.
+// We're just storing it in a global variable here for simplicity.
 const clientId = 'INSERT_YOUR_OAUTH_IDENTIFIER_HERE';
 
 //****************************************************************
